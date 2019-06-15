@@ -10,9 +10,12 @@
     <title>Product Hunt</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+   
+
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="{% static 'open-iconic/font/css/open-iconic-bootstrap.css' %}" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -32,11 +35,12 @@
     </style>
     <!-- Custom styles for this template -->
   </head>
+  
   <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-            <a class="navbar-brand active" href="#">
+            <a class="navbar-brand active" href="{% url 'home' %}">
             <img src="{% static 'logo.png' %}" class="d-inline-block align-top" widht="30" height="30" />
             Product Hunt
             </a>
@@ -47,19 +51,22 @@
               <ul class="navbar-nav ml-auto" >
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link text-right" href="javascript:{document.getElementById('logout').submit()}">Log-out</a>
+                    <a style="color:black" class="nav-link text-right pt-3 pr-4" href="{% url 'create' %}"><span class="oi oi-plus" aria-hidden="true"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-right pt-3 pr-4" href="javascript:{document.getElementById('logout').submit()}">Log-out</a>
                     <form id="logout" method="POST" action="{% url 'logout' %}">
                         {% csrf_token %}
                         <input type="hidden" />
                     </form>
-                  </li>
+                </li>
                 {% else %}
                 <li>
-                    <a class="nav-link text-right" href="{% url 'signup' %}">Sign-up</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-right" href="{% url 'login' %}">Log-in</a>
-                  </li>
+                  <a class="nav-link text-right" href="{% url 'signup' %}">Sign-up</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-right" href="{% url 'login' %}">Log-in</a>
+                </li>
                 {% endif %}
               </ul>
             </div>
